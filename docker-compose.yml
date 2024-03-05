@@ -1,0 +1,26 @@
+version: '1'
+
+services:
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    container_name: 'mongo_amelia'
+    env_file:
+      - .env
+    environment:
+      - MONGO_URL=${DB_URL}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+
+  # Node.js app service
+  app:
+    build:
+      context: .
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/app
