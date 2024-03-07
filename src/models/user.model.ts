@@ -1,10 +1,10 @@
-import { Document, Schema, model } from "mongoose";
-import { User } from "../interfaces/user.interface";
+import { Document, Schema, model } from 'mongoose';
+import { User } from '../interfaces/user.interface';
 
 const userSchema: Schema = new Schema({
   subscriberId: {
     type: Schema.Types.ObjectId,
-    ref: "Subscriber",
+    ref: 'Subscriber',
     required: true,
   },
   name: {
@@ -50,31 +50,31 @@ const userSchema: Schema = new Schema({
   },
   serviceAgentId: {
     type: Schema.Types.ObjectId,
-    ref: "ServiceAgent",
+    ref: 'ServiceAgent',
   },
   createdAt: {
     type: Date,
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   updatedAt: {
     type: Date,
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   deletedAt: {
     type: Date,
   },
   deletedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
 });
 
-const UserModel = model<User & Document>("User", userSchema);
+const UserModel = model<User & Document>('User', userSchema);
 
 export default UserModel;

@@ -1,8 +1,8 @@
 {
     "watch": [
-        "app",
+        "src",
         ".env"
     ],
     "ext": "js,ts,json",
-    "exec": "ts-node app/server.ts"
+    "exec": "ts-node src/server.ts"
 }
