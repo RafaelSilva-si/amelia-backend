@@ -9,11 +9,11 @@ Bem-vindo à documentação da API do Software Amélia. ...
 
 ### Gerenciamento de Usuário (Em Desenvolvimento):
 - [x] Cadastro de novos usuários com informações como nome, e-mail e senha e outros campos.
-- [x] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.
-- [x] Detalhes de um usuário específico com base no seu email.
-- [x] Atualização das informações de um usuário existente.
-- [x] Remoção de um usuário específico.
-- [x] Envio de Email para confirmação de conta.
+- [ ] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.
+- [ ] Detalhes de um usuário específico com base no seu email.
+- [ ] Atualização das informações de um usuário existente.
+- [ ] Remoção de um usuário específico.
+- [ ] Envio de Email para confirmação de conta.
       
 ### Endpoints da aplicação SWAGGER
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
