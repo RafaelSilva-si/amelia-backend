@@ -1,4 +1,5 @@
 import { Document, Schema, model } from 'mongoose';
+
 import { User } from '../interfaces/user.interface';
 
 const userSchema: Schema = new Schema({
@@ -47,31 +48,6 @@ const userSchema: Schema = new Schema({
   },
   emailVerified: {
     type: Boolean,
-  },
-  serviceAgentId: {
-    type: Schema.Types.ObjectId,
-    ref: 'ServiceAgent',
-  },
-  createdAt: {
-    type: Date,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  updatedAt: {
-    type: Date,
-  },
-  updatedBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  deletedAt: {
-    type: Date,
-  },
-  deletedBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
   },
 });
 
