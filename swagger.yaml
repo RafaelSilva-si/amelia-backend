@@ -1,3 +1,312 @@
 tags:
+- name: Authentication
+  description: Authentication operations
 - name: Users
   description: Users API
+
+
+paths:
+# ROUTES AUTHENTICATION
+  /signup:
+    post:
+      tags:
+      - Authentication
+      summary: User Sign Up
+      parameters:
+      - name: body
+        in: body
+        description: User Data
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUserDto'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+  /login:
+    post:
+      tags:
+      - Authentication
+      summary: User Sign In
+      parameters:
+      - name: body
+        in: body
+        description: User Credentials
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: User Email
+              default: example@example.com
+            password:
+              type: string
+              description: User Password
+              default: defaultPassword
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        500:
+          description: Server Error
+
+  /logout:
+    post:
+      tags:
+      - Authentication
+      summary: User Log Out
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        500:
+          description: Server Error
+
+# ROUTES USERS
+  /users/filter:
+    post:
+      tags:
+      - Users
+      summary: Find All Users With Filters
+      parameters:
+      - name: body
+        in: body
+        description: User Data
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: User Email
+              default: example@example.com
+            name:
+              type: string
+              description: User Name
+              default: John Doe
+            cpf:
+              type: string
+              description: User CPF
+              default: '123.456.789-00'
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+
+  /users/find-by-email:
+    post:
+      tags:
+      - Users
+      summary: Find User By Email
+      parameters:
+      - name: body
+        in: body
+        description: User Find By Email
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: User Email
+              default: example@example.com
+      responses:
+        200:
+          description: OK
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+  /users:
+    post:
+      tags:
+      - Users
+      summary: Add User
+      parameters:
+      - name: body
+        in: body
+        description: User Data
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUserDto'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+    patch:
+      tags:
+      - Users
+      summary: Update User By Id
+      parameters:
+      - name: body
+        in: body
+        description: User Data
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateUserDto'
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+    delete:
+      tags:
+      - Users
+      summary: Delete User By Id
+      parameters:
+      - name: body
+        in: body
+        description: User Delete By ID
+        required: true
+        schema:
+          type: object
+          properties:
+            _id:
+              type: string
+              description: User Id
+              default: defaultUserId
+      responses:
+        200:
+          description: OK
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+definitions:
+# USER DEFINITIONS
+  CreateUserDto:
+    type: object
+    required:
+      - name
+      - email
+      - password
+    properties:
+      name:
+        type: string
+        description: User Name
+        default: John Doe
+      email:
+        type: string
+        format: email
+        description: User Email
+        default: example@example.com
+      password:
+        type: string
+        description: User Password
+        default: defaultPassword
+      cpf:
+        type: string
+        description: User CPF
+        default: '123.456.789-00'
+      address:
+        type: string
+        description: User Address
+        default: '123 Main Street'
+      city:
+        type: string
+        description: User City
+        default: Cityville
+      state:
+        type: string
+        description: User State
+        default: Stateville
+      country:
+        type: string
+        description: User Country
+        default: Brasil
+      zipcode:
+        type: string
+        description: User Zip Code
+        default: '12345-678'
+      phone:
+        type: string
+        description: User Phone
+        default: '+1234567890'
+      photo:
+        type: string
+        description: User Photo
+        default: 'default.jpg'
+  UpdateUserDto:
+    type: object
+    required:
+      - name
+      - email
+      - password
+    properties:
+      _id:
+        type: string
+        description: User Id
+        default: defaultUserId
+      name:
+        type: string
+        description: User Name
+        default: John Doe
+      email:
+        type: string
+        format: email
+        description: User Email
+        default: example@example.com
+      password:
+        type: string
+        description: User Password
+        default: defaultPassword
+      cpf:
+        type: string
+        description: User CPF
+        default: '123.456.789-00'
+      address:
+        type: string
+        description: User Address
+        default: '123 Main Street'
+      city:
+        type: string
+        description: User City
+        default: Cityville
+      state:
+        type: string
+        description: User State
+        default: Stateville
+      country:
+        type: string
+        description: User Country
+        default: Brasil
+      zipcode:
+        type: string
+        description: User Zip Code
+        default: '12345-678'
+      phone:
+        type: string
+        description: User Phone
+        default: '+1234567890'
+      photo:
+        type: string
+        description: User Photo
+        default: 'default.jpg'
