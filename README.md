@@ -7,7 +7,7 @@ Bem-vindo à documentação da API do Software Amélia. ...
 
 ## Funcionalidades do Software:
 
-### Gerenciamento de Usuário (Em Desenvolvimento):
+### Gerenciamento de Usuário:
 - [x] Cadastro de novos usuários com informações como nome, e-mail e senha e outros campos.
 - [x] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.
 - [x] Detalhes de um usuário específico com base no seu email.
