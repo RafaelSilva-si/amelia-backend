@@ -9,12 +9,21 @@ Bem-vindo à documentação da API do Software Amélia. ...
 
 ### Gerenciamento de Usuário (Em Desenvolvimento):
 - [x] Cadastro de novos usuários com informações como nome, e-mail e senha e outros campos.
-- [ ] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.
-- [ ] Detalhes de um usuário específico com base no seu email.
-- [ ] Atualização das informações de um usuário existente.
-- [ ] Remoção de um usuário específico.
-- [ ] Envio de Email para confirmação de conta.
-      
+- [x] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.
+- [x] Detalhes de um usuário específico com base no seu email.
+- [x] Atualização das informações de um usuário existente.
+- [x] Remoção de um usuário específico.
+- [x] Envio de Email para confirmação de conta.
+
+### Autenticação e Autorização:
+- [x] Autenticação de usuários para garantir acesso seguro às funcionalidades do sistema.
+- [x] Restrição de acesso a funcionalidades específicas com base nas permissões do usuário.
+
+#### Assinantes:
+**Tabela para gerenciar Assinantes:** Existe uma tabela para gerenciar dados de assinantes, como nome, plano e outros. Os dados dessa tabela são criados automaticamente quando o cliente faz o signup. Essa tabela é importante para gerenciar todos assinantes.   
+
+**Importância do campo `subscriberId`:** Em todas tabelas do sistema, precisamos desse campo, para identificar de qual assinante se trata. Importante visarmos a segurança para evitar o vazamento de dados entre clientes.
+
 ### Endpoints da aplicação SWAGGER
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 <br>
