@@ -4,8 +4,9 @@ import { verify } from 'jsonwebtoken';
 import { CreateUserDto } from '../dtos/users.dto';
 import { User } from '../interfaces/index.interface';
 import { HttpException } from '../errors/HttpException';
-import { SECRET_KEY, setGlobalSubscriberId } from '../config';
+import { BASE_URL, PORT, SECRET_KEY, setGlobalSubscriberId } from '../config';
 import { createCookie, createToken } from '../utils/CreateToken';
+
 import SubscriberModel from '../models/subscriber.model';
 import UserModel from '../models/user.model';
 import EmailService from './email.service';
@@ -41,7 +42,7 @@ class AuthService {
     const tokenData = createToken(createdUser);
     await this.emailService.sendEmail(createdUser.email, 'Confirmar email', 'email-confirmation', {
       createdUser,
-      confirmationLink: `${process.env.BASE_URL}:${process.env.PORT}/verify/${tokenData.accessToken}`,
+      confirmationLink: `${BASE_URL}:${PORT}/verify/${tokenData.accessToken}`,
     });
 
     return createdUser;

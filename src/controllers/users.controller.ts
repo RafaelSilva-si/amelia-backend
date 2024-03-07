@@ -1,8 +1,9 @@
 import { NextFunction, Response } from 'express';
 
 import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
-import UserService from '../services/users.service';
 import { RequestWithUser, User } from '../interfaces/index.interface';
+
+import UserService from '../services/users.service';
 
 class UsersController {
   private usersService = new UserService();
@@ -10,8 +11,7 @@ class UsersController {
   public findAllUsers = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     try {
       const filterParams: any = req.body;
-      const userReqData: User = req.user;
-      const findAllUsersData = await this.usersService.findAllUser({ ...filterParams, deletedAt: null }, userReqData);
+      const findAllUsersData = await this.usersService.findAllUser({ ...filterParams, deletedAt: null });
 
       res.status(200).json({ data: findAllUsersData, message: 'OK' });
     } catch (error) {
@@ -22,8 +22,7 @@ class UsersController {
   public findUserByEmail = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     try {
       const userEmail: string = req.body.email;
-      const userReqData: User = req.user;
-      const findUserData: User = await this.usersService.findUserByEmail(userEmail, userReqData);
+      const findUserData: User = await this.usersService.findUserByEmail(userEmail);
 
       res.status(200).json({ data: findUserData, message: 'OK' });
     } catch (error) {

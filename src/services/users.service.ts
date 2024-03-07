@@ -2,10 +2,12 @@ import { hash } from 'bcrypt';
 
 import { HttpException } from '../errors/HttpException';
 import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
+import { BASE_URL, PORT } from '../config';
+import { createToken } from '../utils/CreateToken';
 import { User } from '../interfaces/index.interface';
+
 import UserModel from '../models/user.model';
 import SubscriberModel from '../models/subscriber.model';
-import { createToken } from '../utils/CreateToken';
 import EmailService from './email.service';
 
 class UserService {
@@ -13,14 +15,14 @@ class UserService {
   private subscriberModel = SubscriberModel;
 
   private emailService = new EmailService();
-  public async findAllUser(filterParams?: any, user?: User): Promise<User[]> {
-    const usersData = await this.usersModal.find({ ...filterParams, subscriberId: user.subscriberId });
+  public async findAllUser(filterParams?: any): Promise<User[]> {
+    const usersData = await this.usersModal.find({ ...filterParams });
 
     return usersData;
   }
 
-  public async findUserByEmail(email: string, user: User): Promise<User> {
-    const userData = await this.usersModal.findOne({ email, subscriberId: user.subscriberId });
+  public async findUserByEmail(email: string): Promise<User> {
+    const userData = await this.usersModal.findOne({ email });
 
     return userData;
   }
@@ -36,6 +38,7 @@ class UserService {
     };
     const subscriber = await this.subscriberModel.create(subscriberData);
 
+    // Cria Usuário
     const hashedPassword = await hash(userData.password, 10);
     const createdUser = await this.usersModal.create({
       ...userData,
@@ -49,7 +52,7 @@ class UserService {
     const tokenData = createToken(createdUser);
     await this.emailService.sendEmail(createdUser.email, 'Confirmar email', 'email-confirmation', {
       createdUser,
-      confirmationLink: `${process.env.BASE_URL}:${process.env.PORT}/verify/${tokenData.accessToken}`,
+      confirmationLink: `${BASE_URL}:${PORT}/verify/${tokenData.accessToken}`,
     });
 
     return createdUser;

@@ -4,12 +4,11 @@ import { verify } from 'jsonwebtoken';
 import { SECRET_KEY, setGlobalSubscriberId } from '../config';
 import { HttpException } from '../errors/HttpException';
 import { DataStoredInToken, RequestWithUser } from '../interfaces/index.interface';
+
 import UserModel from '../models/user.model';
 
 export const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {
-    console.log(req.cookies['Authorization']);
-
     const Authorization = req.cookies['Authorization'] || (req.header('Authorization') ? req.header('Authorization').split('Bearer ')[1] : null);
 
     if (Authorization) {
