@@ -7,6 +7,13 @@ Bem-vindo à documentação da API do Software Amélia. ...
 
 ## Funcionalidades do Software:
 
+### Gerenciamento de Serviços:
+- [x] Cadastro de novos serviços com informações como nome, e-mail e senha e outros campos.
+- [x] Visualização de todos os serviços cadastrados no sistema com filtros em todos os campos.
+- [x] Detalhes de um serviço específico com base no seu email.
+- [x] Atualização das informações de um serviço existente.
+- [x] Remoção de um serviço específico.
+
 ### Gerenciamento de Usuário:
 - [x] Cadastro de novos usuários com informações como nome, e-mail e senha e outros campos.
 - [x] Visualização de todos os usuários cadastrados no sistema com filtros em todos os campos.

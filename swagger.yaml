@@ -3,7 +3,8 @@ tags:
   description: Authentication operations
 - name: Users
   description: Users API
-
+- name: Services
+  description: Services API
 
 paths:
 # ROUTES AUTHENTICATION
@@ -200,6 +201,130 @@ paths:
         500:
           description: Server Error
 
+# ROUTES SERVICES
+  /services/filter:
+    post:
+      tags:
+      - Services
+      summary: Find All Services With Filters
+      parameters:
+      - name: body
+        in: body
+        description: Service Data
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Service Name
+              default: Corte de Cabelo
+            description:
+              type: string
+              description: Service Description
+              default: Corte de Cabelo para toda a família
+            price:
+              type: number
+              description: Service Price
+              default: 50.00
+      responses:
+        200:
+          description: OK
+        500:
+          description: Server Error
+
+  /services/find-by-id:
+    post:
+      tags:
+      - Services
+      summary: Find Services By ID
+      parameters:
+      - name: body
+        in: body
+        description: Services Find By ID
+        required: true
+        schema:
+          type: object
+          properties:
+            _id:
+              type: string
+              description: Service Id
+              default: defaultServiceId
+      responses:
+        200:
+          description: OK
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+  /services:
+    post:
+      tags:
+      - Services
+      summary: Add Service
+      parameters:
+      - name: body
+        in: body
+        description: Service Data
+        required: true
+        schema:
+          $ref: '#/definitions/CreateServiceDto'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+    patch:
+      tags:
+      - Services
+      summary: Update Service By Id
+      parameters:
+      - name: body
+        in: body
+        description: Service Data
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateServiceDto'
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
+    delete:
+      tags:
+      - Services
+      summary: Delete service By Id
+      parameters:
+      - name: body
+        in: body
+        description: service Delete By ID
+        required: true
+        schema:
+          type: object
+          properties:
+            _id:
+              type: string
+              description: Service Id
+              default: defaultServiceId
+      responses:
+        200:
+          description: OK
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+
 definitions:
 # USER DEFINITIONS
   CreateUserDto:
@@ -310,3 +435,46 @@ definitions:
         type: string
         description: User Photo
         default: 'default.jpg'
+  # SERVICE DEFINITIONS
+  CreateServiceDto:
+    type: object
+    required:
+      - name
+      - description
+      - price
+    properties:
+      name:
+        type: string
+        description: Service Name
+        default: Corte de Cabelo
+      description:
+        type: string
+        description: Service Description
+        default: Corte de Cabelo para toda a família
+      price:
+        type: number
+        description: Service Price
+        default: 50.00
+  UpdateServiceDto:
+    type: object
+    required:
+      - name
+      - description
+      - price
+    properties:
+      _id:
+        type: string
+        description: Service Id
+        default: defaultServiceId
+      name:
+        type: string
+        description: Service Name
+        default: Corte de Cabelo
+      description:
+        type: string
+        description: Service Description
+        default: Corte de Cabelo para toda a família
+      price:
+        type: number
+        description: Service Price
+        default: 50.00
